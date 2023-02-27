@@ -50,3 +50,11 @@ function createItem(color, shape){
 	it.shape = shape;
 	return it;
 }
+
+function loadpage(url){
+    window.location.assign(url);
+}
+
+function go_to_menu(){
+    loadpage("../index.html");
+}
