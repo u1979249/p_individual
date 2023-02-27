@@ -3,18 +3,44 @@
 	line-height: 75px;
 }
 
+body{
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 300px;
+    height: 75px;
+    font-size: 16px;
+    margin-top: 10px;
+    background-color: grey;
+    display: grid;
+	grid-template-columns: 1fr 1fr 1fr;
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+}
+
+.menu-object.title{
+	color: aquamarine;
+    text-align: center;
+    font-size: 35px;
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+}
+
 .menu-object{
-	display:block;
-	margin-left: auto;
-	margin-right: auto;
-	width: 300px;
-	height: 75px;
-	font-size: 16px;
-	margin-top: 10px;
+	border-color: aquamarine;
+    border-style: outset;
+    border-width: 4px;
+    width: auto;
+    font-size: 25px;
+    color:aquamarine;
+    background-color: rgb(37, 37, 37);
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
 }
 
 p{
-	text-align: center;
+	color: aquamarine;
+    text-align: center;
+    font-size: 35px;
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+	
 }
 
 button.menu-object:active{
