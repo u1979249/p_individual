@@ -18,9 +18,14 @@ p{
 }
 
 button.menu-object:active{
-	font-size: 18px;
-	width: 275px;
-	height: 70px;
+	border-color: aquamarine;
+    border-style: outset;
+    border-width: 4px;
+    width: auto;
+    font-size: 25px;
+    color:aquamarine;
+    background-color: rgb(37, 37, 37);
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
 }
 
 button.menu-object:hover:not(:active){

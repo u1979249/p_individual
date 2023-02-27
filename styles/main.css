@@ -1,0 +1,30 @@
+body{
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 300px;
+    height: 75px;
+    font-size: 16px;
+    margin-top: 10px;
+    background-color: grey;
+    display: grid;
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+}
+
+button.Primer-boton{
+    border-color: aquamarine;
+    border-style: outset;
+    border-width: 4px;
+    width: auto;
+    font-size: 25px;
+    color:aquamarine;
+    background-color: rgb(37, 37, 37);
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+}
+
+p{
+    color: aquamarine;
+    text-align: center;
+    font-size: 35px;
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+}
