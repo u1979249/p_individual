@@ -15,8 +15,26 @@ body{
     font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
 }
 
+.menu-container{
+  	display: grid;
+	justify-content: center; /*Centra los elementos horizontalmente*/
+	align-items: center; /*Centra los elementos verticalmente*/
+    grid-template-rows: repeat(3, auto); /*Establece 3 filas de altura automática*/
+    grid-gap: 10px; /*Establece el espacio entre los elementos*/
+    width: 300px;
+    height: 300px;
+    background-color: grey;
+	font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+}
 
-.menu-object.title{
+.game-container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.menu-object#title{
 	color: aquamarine;
     text-align: center;
     font-size: 35px;
@@ -53,31 +71,14 @@ p{
 	
 }
 
-button.menu-object:active{
-	/*border-color: aquamarine;
-    border-style: outset;
-    border-width: 4px;
-    width: auto;
-    font-size: 25px;
-    color:aquamarine;
-    background-color: rgb(37, 37, 37);
-    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;*/
-}
-
-button.menu-object:hover:not(:active){
-    /*
-	font-size: 22px;
-	width: 325px;
-	height: 85px;*/
-}
-
 .juego{
     display: grid;
-	grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-template-columns: repeat(4, 1fr);
+    justify-items: center;
+    align-items: center;
     gap: 20px;
     text-align: center;
-	width: 300px;
+    width: 500px;
     height: 150px;
-
 }
 
