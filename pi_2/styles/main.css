@@ -61,6 +61,7 @@ button.menu-object:hover:not(:active){
 	border-color: mediumaquamarine;
 	color:mediumaquamarine;
 
+}
 
 
 p{
@@ -70,6 +71,7 @@ p{
     font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
 	
 }
+
 .juego{
     display: grid;
     grid-template-columns: repeat(4, 1fr);

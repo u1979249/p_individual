@@ -28,3 +28,14 @@ p{
     font-size: 35px;
     font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
 }
+
+button.Primer-boton:active{
+	border-color: blue;
+	color:blue;
+}
+
+button.Primer-boton:hover:not(:active){
+	border-color: mediumaquamarine;
+	color:mediumaquamarine;
+
+}
