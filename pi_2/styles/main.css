@@ -70,7 +70,6 @@ p{
     font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
 	
 }
-
 .juego{
     display: grid;
     grid-template-columns: repeat(4, 1fr);
