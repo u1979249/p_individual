@@ -34,8 +34,8 @@ body{
     justify-content: center;
 }
 
-.menu-object#title{
-	color: aquamarine;
+.menu-title{
+	color: mediumaquamarine;
     text-align: center;
     font-size: 35px;
     font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
@@ -52,16 +52,16 @@ body{
     font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
 }
 
-button.exit{
-    border-color: aquamarine;
-    border-style: outset;
-    border-width: 4px;
-    width: auto;
-    font-size: 25px;
-    color:aquamarine;
-    background-color: rgb(37, 37, 37);
-    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+button.menu-object:active{
+	border-color: blue;
+	color:blue;
 }
+
+button.menu-object:hover:not(:active){
+	border-color: mediumaquamarine;
+	color:mediumaquamarine;
+
+
 
 p{
 	color: aquamarine;
