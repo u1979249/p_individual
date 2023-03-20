@@ -2,6 +2,11 @@ const back = "../resources/back.png";
 const items = ["../resources/cb.png","../resources/co.png","../resources/sb.png",
 "../resources/so.png","../resources/tb.png","../resources/to.png"];
 
+var start=false
+var dificultad=""
+var tiempo=0
+
+
 var game = new Vue({
 	el: "#game_id",
 	data: {
@@ -12,6 +17,10 @@ var game = new Vue({
 		bad_clicks: 0
 	},
 	created: function(){
+		var json = localStorage.getItem("config") ||	 '{"cards":2,"dificulty":"hard"}';
+		var objeto=JSON.parse(json);
+		dificultad=objeto.dificulty
+		this.num_cards=objeto.cards;
 		this.username = sessionStorage.getItem("username","unknown");
 		this.items = items.slice(); // Copiem l'array
 		this.items.sort(function(){return Math.random() - 0.5}); // Array aleatòria
@@ -19,8 +28,28 @@ var game = new Vue({
 		this.items = this.items.concat(this.items); // Dupliquem els elements
 		this.items.sort(function(){return Math.random() - 0.5}); // Array aleatòria
 		for (var i = 0; i < this.items.length; i++){
-			this.current_card.push({done: false, texture: back});
+			this.current_card.push({done: false, texture: this.items[i]});
 		}
+		
+		if (dificultad=="hard"){
+			tiempo==750
+		}
+		else if(dificultad=="normal"){
+			tiempo==1250
+		}
+		else tiempo=2000
+		
+		setTimeout(() => {
+			console.log(dificultad);
+			for (var i = 0; i < this.items.length; i++){
+				Vue.set(this.current_card, i, {done: false, texture: back});
+				
+			}
+			
+			start=true
+		},tiempo);
+			
+		
 	},
 	methods: {
 		clickCard: function(i){
@@ -30,7 +59,8 @@ var game = new Vue({
 	},
 	watch: {
 		current_card: function(value){
-			if (value.texture === back) return;
+			if (value.texture === back || start==false	) return;
+			console.log("funciona");
 			var front = null;
 			var i_front = -1;
 			for (var i = 0; i < this.current_card.length; i++){
@@ -57,7 +87,16 @@ var game = new Vue({
 	},
 	computed: {
 		score_text: function(){
-			return 100 - this.bad_clicks * 20;
+			if(dificultad=="hard"){
+				return 100 - this.bad_clicks * 50;	
+			}
+			else if(dificultad=="normal")
+			{
+				return 100 - this.bad_clicks * 25;	
+			}
+			else return 100 - this.bad_clicks * 10;	
+			
+
 		}
 	}
 });
