@@ -11,5 +11,5 @@ function go_pi_3(){
 }
 
 function go_game(){
-    loadpage("./pi_3/index.html")
+    loadpage("./pi_4/index.html")
 }
