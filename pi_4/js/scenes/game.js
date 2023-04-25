@@ -25,18 +25,28 @@ class GameScene extends Phaser.Scene {
 		var objeto=JSON.parse(json);
 		this.dificultad=objeto.dificulty;
 		this.num_cards=objeto.cards
-		let arraycards = ['co', 'sb', 'co', 'sb'];
+		let arraycards = ['co', 'cb', 'sb', 'so', 'tb', 'to'];
+		let arrayRandom = []
 		this.cameras.main.setBackgroundColor(0xBFFCFF);
 		
+		
+		function getRandomInt(max) {
+			return Math.floor(Math.random() * max);
+		  }
+		for (var i=0;i<5;i++){
+			arrayRandom.push(console.log(getRandomInt(7)))
+		}
+			
+
 		this.add.image(50, 300, arraycards[0]); //aleatoriedad arraycards[]
 		this.add.image(150, 300, arraycards[1]);
 		this.add.image(250, 300, arraycards[2]);
 		this.add.image(350, 300, arraycards[3]);
 		if(this.num_cards>=3){
-			this.add.image(450, 300, arraycards[0]); //aleatoriedad arraycards[]
+			this.add.image(450, 300, arraycards[0]); 
 			this.add.image(550, 300, arraycards[1]);
 			if(this.num_cards==4){
-				this.add.image(650, 300, arraycards[0]); //aleatoriedad arraycards[]
+				this.add.image(650, 300, arraycards[0]); 
 				this.add.image(750, 300, arraycards[1]);
 			}
 		}
