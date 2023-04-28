@@ -12,7 +12,8 @@ class GameScene extends Phaser.Scene {
         this.array=[];
         this.arrCard=[];
         this.arrCopi=[];
-        this.puntuacio;
+        this.puntuacio=0;
+        this.menos=10;
     }
 
     preload (){	
@@ -37,7 +38,13 @@ class GameScene extends Phaser.Scene {
         
 		this.cameras.main.setBackgroundColor(0xBFFCFF);
 		
-		
+		if (this.dificultad=="hard"){
+			this.tiempo=750
+		}
+		else if(this.dificultad=="normal"){
+			this.tiempo=1250
+		}
+		else this.tiempo=2000
 		
         this.repartir(this.num_cards, arraycards, arrayRandom, arrayCopia);
 		this.empieza=true;
@@ -72,7 +79,9 @@ class GameScene extends Phaser.Scene {
                         if (this.firstClick){
                             
                             if (this.firstClick.card_id !== card.card_id){
-                                this.score -= 20;
+                                this.score -= this.menos;
+                                this.menos +=10;
+                                
                         
                                 //card.disableBody(true,true)
                                 setTimeout(()=>{
@@ -90,9 +99,14 @@ class GameScene extends Phaser.Scene {
                                 
                                 this.correct++;
                                 if (this.correct >= this.num_cards){
-                                    alert("You Win with " + this.score + " points.");
+                                    this.puntuacio++;
+                                    alert("Charging next level. You have " + this.puntuacio + " points.");
                                     this.repartir(this.num_cards, this.arrCard, this.array, this.arrCopi)
                                     this.empieza=true;
+                                    if (this.tiempo>0){
+                                        this.tiempo = this.tiempo - 250;
+                                    }
+                            
                                    
                                 }
                                 this.firstClick = null;
@@ -154,13 +168,7 @@ class GameScene extends Phaser.Scene {
         this.cards = this.physics.add.staticGroup();
 
     
-		if (this.dificultad=="hard"){
-			this.tiempo=750
-		}
-		else if(this.dificultad=="normal"){
-			this.tiempo=1250
-		}
-		else this.tiempo=2000
+		
     
     }
 }
