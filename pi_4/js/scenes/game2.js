@@ -31,20 +31,14 @@ class GameScene extends Phaser.Scene {
 		var json = localStorage.getItem("config") ||	 '{"cards":2,"dificulty":"hard"}';
 		var objeto=JSON.parse(json);
 		this.dificultad=objeto.dificulty;
-		this.num_cards=objeto.cards
+		this.num_cards=2;
 		let arraycards = ['co', 'cb', 'sb', 'so', 'tb', 'to'];
 		let arrayRandom = []
 		let arrayCopia=[]
         
 		this.cameras.main.setBackgroundColor(0xBFFCFF);
 		
-		if (this.dificultad=="hard"){
-			this.tiempo=750
-		}
-		else if(this.dificultad=="normal"){
-			this.tiempo=1250
-		}
-		else this.tiempo=2000
+		this.tiempo=2000;
 		
         this.repartir(this.num_cards, arraycards, arrayRandom, arrayCopia);
 		this.empieza=true;
@@ -80,8 +74,8 @@ class GameScene extends Phaser.Scene {
                             
                             if (this.firstClick.card_id !== card.card_id){
                                 this.score -= this.menos;
+                                alert("Menos "+ this.menos + " puntos. " + this.score + " restantes.")
                                 this.menos +=10;
-                                
                         
                                 //card.disableBody(true,true)
                                 setTimeout(()=>{
@@ -103,10 +97,6 @@ class GameScene extends Phaser.Scene {
                                     alert("Charging next level. You have " + this.puntuacio + " points.");
                                     this.repartir(this.num_cards, this.arrCard, this.array, this.arrCopi)
                                     this.empieza=true;
-                                    if (this.tiempo>0){
-                                        this.tiempo = this.tiempo - 250;
-                                    }
-                            
                                    
                                 }
                                 this.firstClick = null;
@@ -128,6 +118,29 @@ class GameScene extends Phaser.Scene {
         let arraycards=a;
         let arrayRandom=b;
         let arrayCopia=c;
+
+        if (this.tiempo>0){
+            this.tiempo = this.tiempo - 250;
+        }
+        
+
+        if (this.puntuacio>=5){
+            this.num_cards=3;
+            this.tiempo=2000;
+            if(this.puntuacio==5){
+                this.score=100;
+                alert("Aumentando dificultad. Puntos restablecidos --> " + this.score);
+            }
+        }
+        if (this.puntuacio>=10){
+            this.num_cards=4;
+            this.tiempo=2000;
+            if(this.puntuacio==10){
+                this.score=100;
+                alert("Aumentando dificultad. Puntos restablecidos --> " + this.score);
+            }
+        }
+
         function barajar(num_cards){
             for(let i =0; i<num_cards;i++){
                 arrayRandom[i]=arraycards[Math.floor(Math.random()*6)]
