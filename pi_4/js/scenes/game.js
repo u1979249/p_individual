@@ -27,27 +27,43 @@ class GameScene extends Phaser.Scene {
 		this.num_cards=objeto.cards
 		let arraycards = ['co', 'cb', 'sb', 'so', 'tb', 'to'];
 		let arrayRandom = []
+		let arrayCopia=[]
 		this.cameras.main.setBackgroundColor(0xBFFCFF);
 		
 		
-		function getRandomInt(max) {
-			return Math.floor(Math.random() * max);
-		  }
-		for (var i=0;i<5;i++){
-			arrayRandom.push(console.log(getRandomInt(7)))
-		}
-			
+		
 
-		this.add.image(50, 300, arraycards[0]); //aleatoriedad arraycards[]
-		this.add.image(150, 300, arraycards[1]);
-		this.add.image(250, 300, arraycards[2]);
-		this.add.image(350, 300, arraycards[3]);
+		function barajar(num_cards){
+				for(let i =0; i<num_cards;i++){
+					arrayRandom[i]=arraycards[Math.floor(Math.random()*6)]
+					console.log(i + "primero " + arrayRandom[i]);
+				}
+				var a=num_cards
+				for(let i=0;i<4;i++){
+					arrayCopia[i]=arrayRandom[i]
+				}
+				for(let i=num_cards;i<(num_cards*2);i++){
+					console.log("entra")
+					var indice=Math.floor(Math.random()*a)
+					arrayRandom[i]=arrayCopia[indice];
+					console.log(i + "segundo " + arrayRandom[i])
+					arrayCopia.splice(indice, 1);
+					a--;
+				}
+			
+		}
+		barajar(this.num_cards);
+		console.log(arrayRandom)
+		this.add.image(50, 300, arrayRandom[0]); //aleatoriedad arraycards[]
+		this.add.image(150, 300, arrayRandom[1]);
+		this.add.image(250, 300, arrayRandom[2]);
+		this.add.image(350, 300, arrayRandom[3]);
 		if(this.num_cards>=3){
-			this.add.image(450, 300, arraycards[0]); 
-			this.add.image(550, 300, arraycards[1]);
+			this.add.image(450, 300, arrayRandom[4]); 
+			this.add.image(550, 300, arrayRandom[5]);
 			if(this.num_cards==4){
-				this.add.image(650, 300, arraycards[0]); 
-				this.add.image(750, 300, arraycards[1]);
+				this.add.image(650, 300, arrayRandom[6]); 
+				this.add.image(750, 300, arrayRandom[7]);
 			}
 		}
 		
@@ -79,20 +95,20 @@ class GameScene extends Phaser.Scene {
 			let i = 0;
 			console.log(arraycards);
 			this.cards.children.iterate((card)=>{
-				card.card_id = arraycards[i];
+				card.card_id = arrayRandom[i];
 				i++;
 				card.setInteractive();
 				card.on('pointerup', () => {
 					card.disableBody(true,true);
 					console.log( card.card_id);
 					if (this.firstClick){
-						console.log("entro3");
+						
 						if (this.firstClick.card_id !== card.card_id){
 							this.score -= 20;
-							console.log("entro1");
+					
 							//card.disableBody(true,true)
 							setTimeout(()=>{
-								console.log("entro");
+								
 								this.firstClick.enableBody(false, 0, 0, true, true);
 								card.enableBody(false, 0, 0, true, true);
 								this.firstClick = null;
@@ -103,9 +119,9 @@ class GameScene extends Phaser.Scene {
 							}
 						}
 						else{
-							console.log("entro4");
+							
 							this.correct++;
-							if (this.correct >= 2){
+							if (this.correct >= this.num_cards){
 								alert("You Win with " + this.score + " points.");
 								loadpage("../");
 							}
