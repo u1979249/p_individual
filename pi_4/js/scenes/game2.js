@@ -85,7 +85,12 @@ class GameScene extends Phaser.Scene {
                                     this.firstClick = null;
                                 },500);
                                 if (this.score <= 0){
-                                    alert("Game Over");
+                                    var nombre = prompt("Partida terminada, introduzca su nombre:");
+                                    var puntuaciones= [
+                                        {nombre: nombre, puntuacion: this.puntuacio}
+                                    ];
+                                    localStorage.setItem('puntuaciones',JSON.stringify(puntuaciones))
+                                    
                                     loadpage("../");
                                 }
                             }

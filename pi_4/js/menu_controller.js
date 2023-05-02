@@ -7,7 +7,7 @@ function start_game(){
 }
 
 function phaser_game(){
-	loadpage("./html/phasergame.html");
+	loadpage("./html/phasergame2.html");
 }
 
 function phaser_game2(){
@@ -19,6 +19,10 @@ function exit (){
 		alert("Leaving " + name + "'s game");
 	}
 	name = "";
+}
+
+function puntuacion(){
+	loadpage("./html/puntuacion.html");
 }
 
 function options(){
