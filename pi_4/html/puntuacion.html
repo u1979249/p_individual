@@ -1,25 +1,22 @@
-<!DOCTYPE html>
+<!DOCTYPE html> 
 <html>
-<head>
-	<title>Ranking de Jugadores</title>
-	<meta charset="UTF-8">
-</head>
-<body>
-	<h1>Ranking de Jugadores</h1>
-
-	<table id="ranking">
-		<thead>
-			<tr>
-				<th>Posición</th>
-				<th>Nombre</th>
-				<th>Puntuación</th>
-			</tr>
-		</thead>
-		<tbody>
-			<!-- Aquí se agregará la información del ranking -->
-		</tbody>
-	</table>
-
-	<script src="./js/puntuacion_controller.js"></script>
-</body>
+	<head>
+		<link rel="stylesheet" href="../styles/main.css">
+		<script src="../js/loader.js"></script>
+		<title> My first game - Puntuaciones </title>
+	</head>
+	<body>
+		<div id="puntuaciones_id">
+			<p class="menu-object" id="title">Save files</p>
+			<div v-for="p in puntuaciones">
+				<p class="menu-object"> 
+					{{p.nombre}}  [{{p.puntuacion}}] 
+				</p>
+			</div>
+		</div>
+		<a class="menu-object" href="../">GoToMenu</a>
+	</body>
+	<script src="https://cdn.jsdelivr.net/npm/vue@2.6.14"></script>
+	<script src="../js/puntuacion_controller.js"></script>
 </html>
+

@@ -14,6 +14,8 @@ class GameScene extends Phaser.Scene {
         this.arrCopi=[];
         this.puntuacio=0;
         this.menos=10;
+        this.cursors=null;
+        this.name="";
     }
 
     preload (){	
@@ -27,6 +29,12 @@ class GameScene extends Phaser.Scene {
 	}
 	
     create (){	
+        let l_partida = null;
+        if (sessionStorage.idPartida && localStorage.partides){
+            let arrayPartides = JSON.parse(localStorage.partides);
+            if (sessionStorage.idPartida < arrayPartides.length)
+                l_partida = arrayPartides[sessionStorage.idPartida];
+        }
 
 		var json = localStorage.getItem("config") ||	 '{"cards":2,"dificulty":"hard"}';
 		var objeto=JSON.parse(json);
@@ -35,16 +43,43 @@ class GameScene extends Phaser.Scene {
 		let arraycards = ['co', 'cb', 'sb', 'so', 'tb', 'to'];
 		let arrayRandom = []
 		let arrayCopia=[]
+
+        var id_p = sessionStorage.idPartida;
+        this.tiempo=2000;
+
+        if (id_p){
+            this.name=l_partida.username;
+            this.firstClick=l_partida.currCard;
+            this.arrCard=l_partida.items;
+            this.num_cards=l_partida.numCards;
+            this.score=l_partida.score
+            this.puntuacio=l_partida.puntu;
+            this.tiempo=l_partida.tiemp;
+            console.log("Carrego");
+            sessionStorage.clear();
+        }
+
+        
         
 		this.cameras.main.setBackgroundColor(0xBFFCFF);
 		
-		this.tiempo=2000;
+		
 		
         this.repartir(this.num_cards, arraycards, arrayRandom, arrayCopia);
 		this.empieza=true;
+
+        this.cursors=this.input.keyboard.createCursorKeys();
+
 	}
 	
 	update (){	
+        if (this.cursors.left.isDown){
+            this.name = prompt("Partida terminada, introduzca su nombre:");
+            var loadGame= [
+                {username: this.name, currCard: this.firstClick, items: this.arrCard, numCards: this.num_cards, score:this.score, puntu: this.puntuacio, tiemp: this.tiempo }
+            ];
+            localStorage.setItem('partides',JSON.stringify(loadGame))
+        }
         if(this.empieza){
             this.empieza=false;
             this.correct=0;
@@ -85,7 +120,10 @@ class GameScene extends Phaser.Scene {
                                     this.firstClick = null;
                                 },500);
                                 if (this.score <= 0){
-                                    var nombre = prompt("Partida terminada, introduzca su nombre:");
+                                    if (!l_partida){
+                                        this.name = prompt("Partida terminada, introduzca su nombre:");
+                                    }
+                                    
                                     var puntuaciones= [
                                         {nombre: nombre, puntuacion: this.puntuacio}
                                     ];
