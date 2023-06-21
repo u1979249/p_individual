@@ -6,11 +6,19 @@
 		<title> My first game - Puntuaciones </title>
 	</head>
 	<body>
+<<<<<<< HEAD
 		<div id="puntuacion_id">
 			<p class="menu-object" id="title">Puntuacion</p>
 			<div v-for="(save, indx) in saves">
 				<p class="menu-object" > 
 					{{puntos}} 
+=======
+		<div id="puntuaciones_id">
+			<p class="menu-object" id="title">Save files</p>
+			<div v-for="p in puntuaciones">
+				<p class="menu-object"> 
+					{{p.nombre}}  [{{p.puntuacion}}] 
+>>>>>>> 96509d62031373a921a9a63eb563c042b7db3f23
 				</p>
 			</div>
 		</div>
@@ -19,3 +27,4 @@
 	<script src="https://cdn.jsdelivr.net/npm/vue@2.6.14"></script>
 	<script src="../js/puntuacion_controller.js"></script>
 </html>
+
