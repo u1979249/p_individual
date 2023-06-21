@@ -13,3 +13,7 @@ function go_pi_3(){
 function go_game(){
     loadpage("./pi_4/index.html")
 }
+
+function go_grup(){
+    loadpage("./pi_grup/index.html")
+}
